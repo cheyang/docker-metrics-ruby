@@ -5,11 +5,11 @@ require 'docker/metrics/ruby/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "docker-metrics-ruby"
-  spec.version       = Docker::Metrics::Ruby::VERSION
+  spec.version       = Docker::Metrics::VERSION
   spec.authors       = ["cheyang"]
   spec.email         = ["cheyang@163.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Docker container metrics wrapper.}
+  spec.description   = %q{Docker container metrics wrapper.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -17,7 +17,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
-
+  spec.add_dependency "mixlib-log", '>= 0'
+  spec.add_dependency 'docker-api', '>= 0'
+  spec.add_dependency 'lxc-ruby', '>= 0'
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end
