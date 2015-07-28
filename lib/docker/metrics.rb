@@ -17,11 +17,15 @@ module Docker
       
       names =[]
       Docker::Container.all.each{|container|
-        names << container.info["Names"][0].gsub("/","")
+        names << container.info["Names"][0].gsub(/^\//,'')
         
       }
       
       names
+    end
+    
+    def self.is_lxc_driver?
+      return Docker.info["ExecutionDriver"].start_with?("lxc")
     end
     
   end
