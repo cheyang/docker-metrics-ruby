@@ -4,6 +4,7 @@ module Docker
   module Metrics
     class Container
       
+      
       # Initialize a new Docker::Metrics::Container instance
       # @param [String] name container name
       # @return [Docker::Metrics::Container] container instance
@@ -17,6 +18,37 @@ module Docker
         
       end
       
+      def gather_data(require_details=false)
+        
+        unless require_details
+          
+        else
+          #to do
+        end        
+      end
+      
+      #Gather docker info from docker remote api
+      def gather_docker_info(require_details)
+        
+        container_info = hash
+        container = Docker::Container.get(@name)
+        raw_data = container.json
+        
+        container_info['Name']= raw_data['Name'].gsub!(/^\//,'')
+        container_info['Id']= raw_data['Id']
+        container_info['Image']=raw_data['Image']
+        container_info['ImageName']=raw_data['Config']['Image']
+        container_info['State']=raw_data['State']
+        container_info['Config']={}
+        container_info['Config']['Hostname']=raw_data['Config']['Hostname']
+        container_info['Config']['Env']=raw_data['Config']['Env']
+        
+        return container_info
+      end
+      
+      def gather_docker_metrics(require_details)
+        
+      end
       
     end    
   end
