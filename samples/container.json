@@ -1,0 +1,130 @@
+{
+    "AppArmorProfile": "",
+    "Args": [],
+    "Config": {
+        "AttachStderr": false,
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "Cmd": [
+            "/opt/startdb2.sh"
+        ],
+        "CpuShares": 0,
+        "Cpuset": "",
+        "Domainname": "",
+        "Entrypoint": null,
+        "Env": [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "ExposedPorts": {
+            "50000/tcp": {}
+        },
+        "Hostname": "acdb22d3abe4",
+        "Image": "apm/db2:DB2v105",
+        "Labels": {},
+        "MacAddress": "",
+        "Memory": 0,
+        "MemorySwap": 0,
+        "NetworkDisabled": false,
+        "OnBuild": null,
+        "OpenStdin": false,
+        "PortSpecs": null,
+        "StdinOnce": false,
+        "Tty": false,
+        "User": "",
+        "Volumes": null,
+        "WorkingDir": ""
+    },
+    "Created": "2015-07-23T08:38:58.168989559Z",
+    "Driver": "devicemapper",
+    "ExecDriver": "native-0.2",
+    "ExecIDs": [
+        "cf60f091b49ed554f214e99cd70317964884363553649208ace2982058d1a1e1",
+        "b514bc0a9571820fbb2c309d7cb034b9369709c9aaccac8e61c7346c27388c06"
+    ],
+    "HostConfig": {
+        "Binds": [
+            "/opt/images:/opt/images"
+        ],
+        "CapAdd": null,
+        "CapDrop": null,
+        "CgroupParent": "",
+        "ContainerIDFile": "",
+        "CpuShares": 0,
+        "CpusetCpus": "",
+        "Devices": [],
+        "Dns": null,
+        "DnsSearch": null,
+        "ExtraHosts": null,
+        "IpcMode": "",
+        "Links": null,
+        "LogConfig": {
+            "Config": null,
+            "Type": "json-file"
+        },
+        "LxcConf": [],
+        "Memory": 0,
+        "MemorySwap": 0,
+        "MountRun": true,
+        "NetworkMode": "bridge",
+        "PidMode": "",
+        "PortBindings": {},
+        "Privileged": true,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": false,
+        "RestartPolicy": {
+            "MaximumRetryCount": 0,
+            "Name": "no"
+        },
+        "SecurityOpt": null,
+        "Ulimits": null,
+        "VolumesFrom": null
+    },
+    "HostnamePath": "/var/lib/docker/containers/acdb22d3abe46afc0dd632fb92ff9e865d00e3e5cd363e010ed274b6d07acedd/hostname",
+    "HostsPath": "/var/lib/docker/containers/acdb22d3abe46afc0dd632fb92ff9e865d00e3e5cd363e010ed274b6d07acedd/hosts",
+    "Id": "acdb22d3abe46afc0dd632fb92ff9e865d00e3e5cd363e010ed274b6d07acedd",
+    "Image": "30c823c7cc60e2bf75ac16795046d21e51c6f91aae53c2e685c0204a7777f947",
+    "LogPath": "/var/lib/docker/containers/acdb22d3abe46afc0dd632fb92ff9e865d00e3e5cd363e010ed274b6d07acedd/acdb22d3abe46afc0dd632fb92ff9e865d00e3e5cd363e010ed274b6d07acedd-json.log",
+    "MountLabel": "system_u:object_r:svirt_sandbox_file_t:s0:c319,c413",
+    "Name": "/db2",
+    "NetworkSettings": {
+        "Bridge": "docker0",
+        "Gateway": "172.17.42.1",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "IPAddress": "172.17.0.35",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "LinkLocalIPv6Address": "fe80::42:acff:fe11:23",
+        "LinkLocalIPv6PrefixLen": 64,
+        "MacAddress": "02:42:ac:11:00:23",
+        "PortMapping": null,
+        "Ports": {
+            "50000/tcp": null
+        }
+    },
+    "Path": "/opt/startdb2.sh",
+    "ProcessLabel": "system_u:system_r:svirt_lxc_net_t:s0:c319,c413",
+    "ResolvConfPath": "/var/lib/docker/containers/acdb22d3abe46afc0dd632fb92ff9e865d00e3e5cd363e010ed274b6d07acedd/resolv.conf",
+    "RestartCount": 0,
+    "State": {
+        "Dead": false,
+        "Error": "",
+        "ExitCode": 0,
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "OOMKilled": false,
+        "Paused": false,
+        "Pid": 31324,
+        "Restarting": false,
+        "Running": true,
+        "StartedAt": "2015-07-23T08:39:01.703037036Z"
+    },
+    "Volumes": {
+        "/opt/images": "/opt/images"
+    },
+    "VolumesRW": {
+        "/opt/images": true
+    },
+    "VolumesRelabel": {
+        "/opt/images": ""
+    }
+}
