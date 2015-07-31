@@ -13,9 +13,9 @@ module LXC
       cpu_usage_array.each{|cpu_usage_str|
       
         if cpu_usage_str.start_with?("user")
-          cpu_hash["usage_in_usermode"] = cpu_usage_str.split[1]
+          cpu_hash["usage_in_usermode"] = cpu_usage_str.split(" ")[1].to_i
         elsif cpu_usage_str.start_with?("system")
-           cpu_hash["usage_in_kernelmode"]  = cpu_usage_str.split[1]
+           cpu_hash["usage_in_kernelmode"]  = cpu_usage_str.split(" ")[1].to_i
         else
           raise "unsupported cpuacct.stat for lxc container #{@name}"
         end
@@ -23,7 +23,7 @@ module LXC
       }
       
       
-      
+      cpu_hash
       
       #? nil : Float("%.4f" % (result.to_i / 1E9))
     end
@@ -31,7 +31,19 @@ module LXC
    def cpu_total_usage
       result = run("cgroup", "cpuacct.usage").to_s.strip
       result.empty? ? nil : result.to_i
-    end 
+    end
+    
+    def percpu_usage
+      percpus =[]
+      result = run("cgroup", "cpuacct.usage_percpu").to_s.strip
+      
+      result.split(" ").each{|percpu|
+        
+        percpus << percpu
+      }
+      
+      return percpus
+    end
     
   end
 end

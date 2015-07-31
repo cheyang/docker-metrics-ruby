@@ -33,6 +33,16 @@ module Docker
         }
 =end
        def container_cpu_metrics(container,require_details)     
+         
+         cpu_usage_stats = container.user_and_kernel_cpu_usage()
+          
+          cpu_usage_stats["percpu_usage"] = container.percpu_usage
+          
+          cpu_usage_stats["total_usage"] = container.cpu_total_usage
+          
+          cpu_stats = {"cpu_usage" => cpu_usage_stats }
+          
+          return cpu_stats
        end
      
        def container_memory_metrics(container,require_details)     
@@ -42,11 +52,9 @@ module Docker
        def gather_docker_metrics(require_details)
           metrics ={"Metrics"=>{}}
           lxc_container = LXC.container(@id)
-          cpu_stats = {"cpu_usage" => { "usage_in_kernelmode" => 12,
-                                        "usage_in_usermode" => 12,
-                                        "percpu_usage" => [],
-                                        "total_usage"=> 808260479136
-                                        }}
+          
+          metrics["Metrics"] = container_cpu_metrics(lxc_container,require_details)
+          
        end
         
         
