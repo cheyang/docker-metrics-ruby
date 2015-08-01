@@ -44,8 +44,60 @@ module Docker
           
           return cpu_stats
        end
-     
-       def container_memory_metrics(container,require_details)     
+=begin
+  "memory_stats": {
+            "usage": 689934336,
+            "max_usage": 706244608,
+            "stats": {
+                "active_anon": 300949504,
+                "active_file": 66375680,
+                "cache": 608997376,
+                "hierarchical_memory_limit": 9223372036854772000,
+                "hierarchical_memsw_limit": 9223372036854772000,
+                "inactive_anon": 301277184,
+                "inactive_file": 21319680,
+                "mapped_file": 579031040,
+                "pgfault": 30187901,
+                "pgmajfault": 3381,
+                "pgpgin": 13271205,
+                "pgpgout": 13102764,
+                "recent_rotated_anon": 58071,
+                "recent_rotated_file": 2468,
+                "recent_scanned_anon": 60956,
+                "recent_scanned_file": 3926,
+                "rss": 80936960,
+                "rss_huge": 0,
+                "swap": 39407616,
+                "total_active_anon": 300949504,
+                "total_active_file": 66375680,
+                "total_cache": 608997376,
+                "total_inactive_anon": 301277184,
+                "total_inactive_file": 21319680,
+                "total_mapped_file": 579031040,
+                "total_pgfault": 30187901,
+                "total_pgmajfault": 3381,
+                "total_pgpgin": 13271205,
+                "total_pgpgout": 13102764,
+                "total_rss": 80936960,
+                "total_rss_huge": 0,
+                "total_swap": 39407616,
+                "total_unevictable": 0,
+                "total_writeback": 0,
+                "unevictable": 0,
+                "writeback": 0
+            },
+            "failcnt": 0,
+            "limit": 3977789440
+        },
+=endn     
+       def container_memory_metrics(container,require_details)   
+         memory_usage_stats = {}
+         
+         memory_usage_stats["memory_usage"] = container.memory_usage
+         
+         memory_usage_stats["max_usage"]= container.max_memory_usage
+         
+         return memory_usage_stats
        end
 
 
@@ -55,6 +107,7 @@ module Docker
           
           metrics["Metrics"] = container_cpu_metrics(lxc_container,require_details)
           
+          metrics
        end
         
         

@@ -34,15 +34,23 @@ module LXC
     end
     
     def percpu_usage
-      percpus =[]
+      per_cpus =[]
       result = run("cgroup", "cpuacct.usage_percpu").to_s.strip
       
       result.split(" ").each{|percpu|
         
-        percpus << percpu
+        per_cpus << percpu.to_i
       }
       
-      return percpus
+      return per_cpus
+    end
+    
+    
+    def max_memory_usage
+      result = run("cgroup", "memory.max_usage_in_bytes").to_s.strip
+      #memory.stat
+      
+      result.to_i
     end
     
   end
