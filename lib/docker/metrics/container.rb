@@ -21,11 +21,11 @@ module Docker
       
       def gather_data(require_details=false)
         
-        unless require_details
-          
-        else
-          #to do
-        end        
+        data = gather_docker_info(require_details)
+        
+        data = hash_deep_merge(data,gather_docker_metrics(require_details))
+               
+        return data     
       end
       
       #Gather docker info from docker remote api
@@ -48,7 +48,7 @@ module Docker
       end
       
       def gather_docker_metrics(require_details)
-        
+        return nil
       end
       
     end    

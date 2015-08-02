@@ -102,7 +102,15 @@ module Docker
          memory_usage_stats["memory_failcnt"] = container.memory_failcnt
          
          if require_details
+           memory_usage_stats["stats"] = container.memory_stats
+         else
+           memory_stats = container.memory_stats
            
+           memory_usage_stats["stats"] = {}
+           
+           memory_usage_stats["stats"]["rss"] = container.memory_stats["rss"]
+           
+           memory_usage_stats["stats"]["cache"] = container.memory_stats["cache"]
          end
          
          
@@ -111,12 +119,14 @@ module Docker
 
 
        def gather_docker_metrics(require_details)
-          metrics ={"Metrics"=>{}}
+          metrics_summary ={"Metrics"=>nil}
           lxc_container = LXC.container(@id)
           
-          metrics["Metrics"] = container_cpu_metrics(lxc_container,require_details)
+          metrics = container_cpu_metrics(lxc_container,require_details)
           
-          metrics
+          metrics = hash_deep_merge(metrics, container_memory_metrics(lxc_container,require_details))
+          
+          metrics_summary["Metrics"] = metrics
        end
         
         

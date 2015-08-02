@@ -2,6 +2,7 @@ require "docker/metrics/version"
 require "docker"
 require "lxc"
 require "monkey_patch/lxc/container"
+require "monkey_patch/deep_merge"
 
 module Docker
   module Metrics
