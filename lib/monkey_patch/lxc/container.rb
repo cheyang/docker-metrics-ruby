@@ -60,6 +60,18 @@ module LXC
       parse_to_hash(result)
     end
     
+    def memory_limit
+      result = run("cgroup", "limit_in_bytes").to_s.strip
+      
+      result.to_i
+    end
+    
+    def memory_failcnt
+      result = run("cgroup", "memory.failcnt").to_s.strip
+      
+      result.to_i
+    end
+    
     
     private
     

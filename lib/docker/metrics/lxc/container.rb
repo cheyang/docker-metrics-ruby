@@ -97,6 +97,15 @@ module Docker
          
          memory_usage_stats["max_usage"]= container.max_memory_usage
          
+         memory_usage_stats["limit"]= container.limit
+         
+         memory_usage_stats["memory_failcnt"] = container.memory_failcnt
+         
+         if require_details
+           
+         end
+         
+         
          return memory_usage_stats
        end
 
