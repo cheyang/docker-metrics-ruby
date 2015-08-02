@@ -53,5 +53,34 @@ module LXC
       result.to_i
     end
     
+    
+    def memory_stats
+      result = run("cgroup", "memory.stats").to_s.strip
+      
+      parse_to_hash(result)
+    end
+    
+    
+    private
+    
+    def parse_to_hash(input)
+      
+      hash = {}
+      
+      unless input.empty? 
+        result = input.split("\n")
+      end
+      
+      result.each{|line|
+        kv = line.split(" ")
+        key=line[0]
+        
+        value = line[-1]
+        
+        hash[key]=value
+      }
+      
+      return hash
+    end
   end
 end
