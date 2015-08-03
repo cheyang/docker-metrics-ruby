@@ -1,6 +1,6 @@
 require 'lxc'
-
 require 'docker/metrics/container'
+require "monkey_patch/lxc/container"
 
 module Docker
   module Metrics
