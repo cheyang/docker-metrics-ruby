@@ -31,7 +31,7 @@ module Docker
       #Gather docker info from docker remote api
       def gather_docker_info(require_details)
         
-        container_info = hash
+        container_info = {}
         container = Docker::Container.get(@name)
         raw_data = container.json
         
