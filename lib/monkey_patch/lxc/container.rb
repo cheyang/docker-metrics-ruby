@@ -77,6 +77,8 @@ module LXC
     
     def parse_to_hash(input)
       
+      puts "input=#{input}"
+      
       hash = {}
       
       unless input.empty? 
