@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'docker/metrics/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "docker-metrics-ruby"
+  spec.name          = "docker-metrics"
   spec.version       = Docker::Metrics::VERSION
   spec.authors       = ["cheyang"]
   spec.email         = ["cheyang@163.com"]
