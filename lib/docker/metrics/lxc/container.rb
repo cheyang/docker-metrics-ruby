@@ -89,7 +89,7 @@ module Docker
             "failcnt": 0,
             "limit": 3977789440
         },
-=endn     
+=end     
        def container_memory_metrics(container,require_details)   
          memory_usage_stats = {}
          
