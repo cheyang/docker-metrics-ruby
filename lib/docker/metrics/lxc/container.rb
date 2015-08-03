@@ -103,7 +103,7 @@ module Docker
         def container_memory_metrics(container,require_details)   
           memory_usage_stats = {}
           
-          memory_usage_stats["memory_usage"] = container.memory_usage
+          memory_usage_stats["usage"] = container.memory_usage
           
           memory_usage_stats["max_usage"]= container.max_memory_usage
           
@@ -114,17 +114,17 @@ module Docker
           if require_details
             memory_usage_stats["stats"] = container.memory_stats
           else
-            memory_usage_stats = container.memory_stats
+            memory_stats = container.memory_stats
             
             memory_usage_stats["stats"] = {}
             
-            memory_usage_stats["stats"]["rss"] = container.memory_stats["rss"]
+            memory_usage_stats["stats"]["rss"] = memory_stats["rss"]
             
-            memory_usage_stats["stats"]["cache"] = container.memory_stats["cache"]
+            memory_usage_stats["stats"]["cache"] = memory_stats["cache"]
           end
           
           
-          return memory_usage_stats
+          return {"memory_usage"=> memory_usage_stats}
         end
         
         
