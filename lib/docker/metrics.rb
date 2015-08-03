@@ -11,8 +11,12 @@ module Docker
       
     end
     
-    def self.container
+    def self.container(name)
+      if is_lxc_driver?
+        container = Docker::Metrics:LXC::Container.new(name)
+      end
       
+      container
     end
     
     def self.get_container_names

@@ -1,4 +1,5 @@
 
+require 'docker/metrics/container'
 
 module Docker
   module Metrics

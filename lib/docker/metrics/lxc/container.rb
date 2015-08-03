@@ -1,5 +1,7 @@
 require 'lxc'
 
+require 'docker/metrics/container'
+
 module Docker
   module Metrics
     module LXC
