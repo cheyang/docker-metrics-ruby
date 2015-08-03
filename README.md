@@ -1,6 +1,6 @@
-# Docker::Metrics::Ruby
+# Docker-Metrics
 
-TODO: Write a gem description
+Ruby wrapper for docker metrics tools
 
 ## Installation
 
