@@ -114,7 +114,7 @@ module Docker
           if require_details
             memory_usage_stats["stats"] = container.memory_stats
           else
-            memory_stats = container.memory_stats
+            memory_usage_stats = container.memory_stats
             
             memory_usage_stats["stats"] = {}
             
