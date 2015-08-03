@@ -86,9 +86,9 @@ module LXC
       
       result.each{|line|
         kv = line.split(" ")
-        key=line[0]
+        key=kv[0]
         
-        value = line[-1]
+        value = kv[-1]
         
         hash[key]=value
       }
