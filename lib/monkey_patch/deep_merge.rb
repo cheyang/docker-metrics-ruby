@@ -1,6 +1,6 @@
 module Kernel
   #deep merge
- def self.hash_deep_merge source_hash, to_merge_hash
+ def hash_deep_merge source_hash, to_merge_hash
 
     to_merge_hash.each_pair do |key, val|
       if source_hash.has_key?(key) then
