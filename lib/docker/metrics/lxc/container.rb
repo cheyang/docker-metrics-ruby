@@ -130,7 +130,7 @@ module Docker
         
         def gather_docker_metrics(require_details)
           metrics_summary ={"Metrics"=>nil}
-          lxc_container = LXC.container(@id)
+          lxc_container = ::LXC.container(@id)
           
           metrics = container_cpu_metrics(lxc_container,require_details)
           
