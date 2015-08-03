@@ -25,6 +25,8 @@ Example:
 ``` ruby
 require 'docker/metrics'
 
+container=Docker::Metrics::container('name')
+
 ```
 
 ## Contributing

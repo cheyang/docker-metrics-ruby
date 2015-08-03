@@ -5,6 +5,14 @@ require 'docker/metrics/container'
 module Docker
   module Metrics
     module LXC
+      
+    end
+  end
+end
+
+module Docker
+  module Metrics
+    module LXC
       class Container < Docker::Metrics::Container
         
         # Initialize a new Docker::Metrics::Container instance
@@ -34,9 +42,9 @@ module Docker
             }
         }
 =end
-       def container_cpu_metrics(container,require_details)     
-         
-         cpu_usage_stats = container.user_and_kernel_cpu_usage()
+        def container_cpu_metrics(container,require_details)     
+          
+          cpu_usage_stats = container.user_and_kernel_cpu_usage()
           
           cpu_usage_stats["percpu_usage"] = container.percpu_usage
           
@@ -45,7 +53,7 @@ module Docker
           cpu_stats = {"cpu_usage" => cpu_usage_stats }
           
           return cpu_stats
-       end
+        end
 =begin
   "memory_stats": {
             "usage": 689934336,
@@ -92,35 +100,35 @@ module Docker
             "limit": 3977789440
         },
 =end     
-       def container_memory_metrics(container,require_details)   
-         memory_usage_stats = {}
-         
-         memory_usage_stats["memory_usage"] = container.memory_usage
-         
-         memory_usage_stats["max_usage"]= container.max_memory_usage
-         
-         memory_usage_stats["limit"]= container.limit
-         
-         memory_usage_stats["memory_failcnt"] = container.memory_failcnt
-         
-         if require_details
-           memory_usage_stats["stats"] = container.memory_stats
-         else
-           memory_stats = container.memory_stats
-           
-           memory_usage_stats["stats"] = {}
-           
-           memory_usage_stats["stats"]["rss"] = container.memory_stats["rss"]
-           
-           memory_usage_stats["stats"]["cache"] = container.memory_stats["cache"]
-         end
-         
-         
-         return memory_usage_stats
-       end
-
-
-       def gather_docker_metrics(require_details)
+        def container_memory_metrics(container,require_details)   
+          memory_usage_stats = {}
+          
+          memory_usage_stats["memory_usage"] = container.memory_usage
+          
+          memory_usage_stats["max_usage"]= container.max_memory_usage
+          
+          memory_usage_stats["limit"]= container.limit
+          
+          memory_usage_stats["memory_failcnt"] = container.memory_failcnt
+          
+          if require_details
+            memory_usage_stats["stats"] = container.memory_stats
+          else
+            memory_stats = container.memory_stats
+            
+            memory_usage_stats["stats"] = {}
+            
+            memory_usage_stats["stats"]["rss"] = container.memory_stats["rss"]
+            
+            memory_usage_stats["stats"]["cache"] = container.memory_stats["cache"]
+          end
+          
+          
+          return memory_usage_stats
+        end
+        
+        
+        def gather_docker_metrics(require_details)
           metrics_summary ={"Metrics"=>nil}
           lxc_container = LXC.container(@id)
           
@@ -129,7 +137,7 @@ module Docker
           metrics = hash_deep_merge(metrics, container_memory_metrics(lxc_container,require_details))
           
           metrics_summary["Metrics"] = metrics
-       end
+        end
         
         
       end
