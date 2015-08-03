@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'docker-metrics-ruby'
+    gem 'docker-metrics'
 
 And then execute:
 
@@ -14,11 +14,18 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install docker-metrics-ruby
+    $ gem install docker-metrics
 
 ## Usage
 
-TODO: Write usage instructions here
+You should have docker already installed on your system before using this library
+
+Example:
+
+``` ruby
+require 'docker/metrics'
+
+```
 
 ## Contributing
 
