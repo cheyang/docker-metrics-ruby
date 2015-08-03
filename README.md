@@ -27,7 +27,7 @@ require 'docker/metrics'
 
 container=Docker::Metrics::container('name')
 
-report = contianer.gather_data
+report = container.gather_data
 
 ```
 

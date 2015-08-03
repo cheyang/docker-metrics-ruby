@@ -55,7 +55,7 @@ module LXC
     
     
     def memory_stats
-      result = run("cgroup", "memory.stats").to_s.strip
+      result = run("cgroup", "memory.stat").to_s.strip
       
       parse_to_hash(result)
     end
@@ -77,7 +77,6 @@ module LXC
     
     def parse_to_hash(input)
       
-      puts "input=#{input}"
       
       hash = {}
       
