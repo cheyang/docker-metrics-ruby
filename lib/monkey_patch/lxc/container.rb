@@ -3,7 +3,7 @@ module LXC
     
     NANOSECONDS_IN_SECOND = 1000000000
     
-    CLOCK_TICKS = `getconf CLK_TCK`.to_s.strip.to_i
+    
      
     def user_and_kernel_cpu_usage
       
@@ -17,9 +17,9 @@ module LXC
       cpu_usage_array.each{|cpu_usage_str|
       
         if cpu_usage_str.start_with?("user")
-          cpu_hash["usage_in_usermode"] = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / CLOCK_TICKS
+          cpu_hash["usage_in_usermode"] = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / get_clock_ticket()
         elsif cpu_usage_str.start_with?("system")
-           cpu_hash["usage_in_kernelmode"]  = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / CLOCK_TICKS
+           cpu_hash["usage_in_kernelmode"]  = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / get_clock_ticket()
         else
           raise "unsupported cpuacct.stat for lxc container #{@name}"
         end
@@ -30,6 +30,15 @@ module LXC
       cpu_hash
       
       #? nil : Float("%.4f" % (result.to_i / 1E9))
+    end
+    
+    def get_clock_ticket
+      
+      if @clock_ticket.nil?
+        @clock_ticket = `getconf CLK_TCK`.to_s.strip.to_i
+      end
+      
+      @clock_ticket
     end
     
    def cpu_total_usage
