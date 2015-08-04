@@ -21,13 +21,13 @@ module Docker
       
       def gather_data(require_details=false)
         
-        data = {}
-        
-        data["timestamp"] = Time.now.to_s
+        data = {}                
         
         data = gather_docker_info(require_details)
         
         data = hash_deep_merge(data,gather_docker_metrics(require_details))
+               
+        data["Timestamp"] = Time.now.to_s       
                
         return data     
       end
