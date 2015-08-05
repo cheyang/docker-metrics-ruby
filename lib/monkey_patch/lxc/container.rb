@@ -4,7 +4,7 @@ module LXC
     NANOSECONDS_IN_SECOND = 1000000000
     
     
-     
+    
     def user_and_kernel_cpu_usage
       
       cpu_hash ={"usage_in_kernelmode" => nil, "usage_in_usermode" => nil}
@@ -15,15 +15,15 @@ module LXC
       end
       #["user 10675589\nsystem 1122811"]
       cpu_usage_array.each{|cpu_usage_str|
-      
+        
         if cpu_usage_str.start_with?("user")
           cpu_hash["usage_in_usermode"] = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / get_clock_ticket()
         elsif cpu_usage_str.start_with?("system")
-           cpu_hash["usage_in_kernelmode"]  = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / get_clock_ticket()
+          cpu_hash["usage_in_kernelmode"]  = (cpu_usage_str.split(" ")[1].to_i * NANOSECONDS_IN_SECOND) / get_clock_ticket()
         else
           raise "unsupported cpuacct.stat for lxc container #{@name}"
         end
-      
+        
       }
       
       
@@ -41,7 +41,7 @@ module LXC
       @clock_ticket
     end
     
-   def cpu_total_usage
+    def cpu_total_usage
       result = run("cgroup", "cpuacct.usage").to_s.strip
       result.empty? ? nil : result.to_i
     end
@@ -84,6 +84,16 @@ module LXC
       
       result.to_i
     end
+    
+    #pgrep -P $(ps -Af | grep lxc-start | grep $CONTAINER_ID | awk '{ print $2; }')
+    def get_external_container_process_id
+      `ps -Af | grep lxc-start | grep ${@name} | awk '{ print $2; }`.to_s.strip.to_i
+    end
+    
+    def get_external_root_process_id
+      `pgrep -P $(ps -Af | grep lxc-start | grep ${@name} | awk '{ print $2; }')`.to_s.strip.to_i
+    end
+    
     
     
     private

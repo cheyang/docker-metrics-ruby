@@ -139,6 +139,7 @@ module Docker
           metrics_summary["Metrics"] = metrics
         end
         
+      
         
       end
     end
