@@ -128,9 +128,11 @@ module Docker
         end
         
         
-        def gather_docker_metrics(require_details)
+        def gather_docker_metrics(real_pid, require_details)
           metrics_summary ={"Metrics"=>nil}
           lxc_container = ::LXC.container(@id)
+          
+          lxc_container.set_pid(real_pid)
           
           metrics = container_cpu_metrics(lxc_container,require_details)
           

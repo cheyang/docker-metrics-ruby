@@ -10,7 +10,9 @@ module Docker
       # @return [Docker::Metrics::Container] container instance
       def initialize(name)
           @name = name
-          @id = Docker::Container.get(@name).id
+          container = Docker::Container.get(@name)
+          @id = container.id
+          @real_pid = container.json['State']['Pid']
       end
       
       #irb(main):003:0> LXC.container('ab83a2638bb23f24d8811fa9b4ca458efca9269696ff3112cc670be2833f3f92').memory_usage
@@ -25,7 +27,7 @@ module Docker
         
         data = gather_docker_info(require_details)
         
-        data = hash_deep_merge(data,gather_docker_metrics(require_details))
+        data = hash_deep_merge(data,gather_docker_metrics(@real_pid, require_details))
                
         data["Timestamp"] = Time.now.to_s       
                
