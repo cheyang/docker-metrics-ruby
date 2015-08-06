@@ -90,8 +90,16 @@ module LXC
       `ps -Af | grep lxc-start | grep ${@name} | awk '{ print $2; }`.to_s.strip.to_i
     end
     
-    def get_external_root_process_id
+    def get_external_cmd_process_id
       `pgrep -P $(ps -Af | grep lxc-start | grep ${@name} | awk '{ print $2; }')`.to_s.strip.to_i
+    end
+    
+    def get_virtual_network_interface
+      unless @network_interface.nil?
+       @network_interface =`sh findveth.sh`.to_s
+     end
+     
+     @network_interface
     end
     
     
