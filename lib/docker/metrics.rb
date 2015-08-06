@@ -19,10 +19,10 @@ module Docker
       container
     end
     
-    def self.get_container_names
+    def self.get_container_names(options={:all=>false})
       
       names =[]
-      Docker::Container.all.each{|container|
+      Docker::Container.all(options.select!{|k,v| k==:all}).each{|container|
         names << container.info["Names"][0].gsub(/^\//,'')
         
       }
