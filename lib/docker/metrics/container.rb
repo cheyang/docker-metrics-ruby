@@ -12,7 +12,9 @@ module Docker
           @name = name
           container = Docker::Container.get(@name)
           @id = container.id
-          @real_pid = container.json['State']['Pid']
+          container_json = container.json
+          @real_pid = container_json['State']['Pid']
+          @running = container_json['State']['Running']
       end
       
       #irb(main):003:0> LXC.container('ab83a2638bb23f24d8811fa9b4ca458efca9269696ff3112cc670be2833f3f92').memory_usage
@@ -34,12 +36,18 @@ module Docker
         return data     
       end
       
+      def running?
+        return @running
+      end
+      
       #Gather docker info from docker remote api
       def gather_docker_info(require_details)
         
         container_info = {}
         container = Docker::Container.get(@name)
         raw_data = container.json
+        
+        @running = raw_data['State']['Running']
         
         container_info['Name']= raw_data['Name'].gsub!(/^\//,'')
         container_info['Id']= raw_data['Id']
