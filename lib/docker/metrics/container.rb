@@ -29,7 +29,11 @@ module Docker
         
         data = gather_docker_info(require_details)
         
-        data = hash_deep_merge(data,gather_docker_metrics(@real_pid, require_details))
+        if running?
+           data = hash_deep_merge(data,gather_docker_metrics(@real_pid, require_details))
+         else
+           data = hash_deep_merge(data,empty_docker_metrics(require_details))
+        end
                
         data["Timestamp"] = Time.now.to_s       
                
@@ -63,6 +67,10 @@ module Docker
       
       def gather_docker_metrics(require_details)
         return nil
+      end
+      
+      def empty_docker_metrics(require_details)
+        
       end
       
     end    

@@ -139,6 +139,8 @@ module Docker
           metrics = hash_deep_merge(metrics, container_memory_metrics(lxc_container,require_details))
           
           metrics_summary["Metrics"] = metrics
+          
+          metrics_summary
         end
         
       
