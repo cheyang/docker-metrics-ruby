@@ -70,7 +70,7 @@ module Docker
       end
       
       def empty_docker_metrics(require_details)
-        
+        emtpty_metric_str ='"Metrics":{"cpu_usage":{"usage_in_kernelmode":0,"usage_in_usermode":0,"percpu_usage":[],"total_usage":0},"memory_usage":{"usage":0,"max_usage":0,"limit":0,"memory_failcnt":0,"stats":{"rss":0,"cache":0}}}'
       end
       
     end    

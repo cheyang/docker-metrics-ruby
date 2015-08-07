@@ -118,9 +118,9 @@ module Docker
             
             memory_usage_stats["stats"] = {}
             
-            memory_usage_stats["stats"]["rss"] = memory_stats["rss"]
+            memory_usage_stats["stats"]["rss"] = memory_stats["rss"].to_i
             
-            memory_usage_stats["stats"]["cache"] = memory_stats["cache"]
+            memory_usage_stats["stats"]["cache"] = memory_stats["cache"].to_i
           end
           
           
