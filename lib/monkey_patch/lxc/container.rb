@@ -91,7 +91,7 @@ module LXC
     end
     
     def memory_limit
-      result = run("cgroup", "limit_in_bytes").to_s.strip
+      result = run("cgroup", "memory.limit_in_bytes").to_s.strip
       
       result.to_i
     end
