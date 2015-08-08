@@ -40,7 +40,9 @@ module LXC
       network_keys =['rx_bytes','rx_errors','tx_bytes','tx_errors']
       
       network_keys.each{|network_key|
-        network_hash[network_key] = `cat #{stats_dir}/#{network_key}`.to_s.strip.to_i
+        cmd = "cat #{stats_dir}/#{network_key}"
+        #puts "#{cmd}"
+        network_hash[network_key] = `#{cmd}`.to_s.strip.to_i
       
       }
       
@@ -124,7 +126,7 @@ module LXC
        
        puts "cmd=#{cmd}"
        
-       @network_interface =`#{cmd}`.to_s
+       @network_interface =`#{cmd}`.to_s.strip
      end
      
      puts "network interface is #{@network_interface}"
