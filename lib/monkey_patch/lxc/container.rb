@@ -115,7 +115,7 @@ module LXC
     
     #mapping docker container and its virtual Ethernet interface in host
     def get_virtual_network_interface
-      unless @network_interface.nil?
+      if @network_interface.nil?
         if @pid.nil?
           @pid = get_external_cmd_process_id
         end
@@ -123,6 +123,7 @@ module LXC
        cmd = "sh -c #{Shell.findveth_cmd @pid}"
        
        puts "cmd=#{cmd}"
+       
        @network_interface =`#{cmd}`.to_s
      end
      
