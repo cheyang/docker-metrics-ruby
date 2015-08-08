@@ -120,7 +120,7 @@ module LXC
           @pid = get_external_cmd_process_id
         end
        
-       cmd = "sh #{$METRIC_SHELL_DIR}/findveth.sh @pid"
+       cmd = "sh #{$METRIC_SHELL_DIR}/findveth.sh #{@pid}"
        
        puts "cmd=#{cmd}"
        
