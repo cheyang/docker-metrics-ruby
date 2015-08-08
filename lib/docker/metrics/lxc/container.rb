@@ -2,10 +2,12 @@ require 'lxc'
 require 'docker/metrics/container'
 require "monkey_patch/lxc/container"
 
+=begin
 if RUBY_VERSION.split(".").join().to_i < 200
   puts "override with monkey patch lxc/shell"
   require 'monkey_patch/lxc/shell'
 end
+=end
 
 module Docker
   module Metrics
