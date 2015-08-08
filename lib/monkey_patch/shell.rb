@@ -1,19 +1,14 @@
   module Shell
-    def self.findveth_cmd
+    def self.findveth_cmd(pid)
       cmd = <<-FINDVETH
       #!/bin/sh
       #thanks to https://github.com/aidanhs
       set -o pipefail
       set -o errexit
   
-      if [ "$#" != 1 ]; then
-         echo "Usage: $0 <pid>"
-         exit 1
-      fi
-  
       TMP=$(mktemp)
   
-      peer_ifidx_line="$(nsenter --target "$1" --net ethtool -S eth0 | grep peer_ifindex)"
+      peer_ifidx_line="$(nsenter --target #{pid} --net ethtool -S eth0 | grep peer_ifindex)"
       peer_ifidx="$(echo "$peer_ifidx_line" | sed 's/.* \([0-9]*\)$/\1/')"
   
       nsenter --target 1 --net ip link | grep "^$peer_ifidx: " > $TMP

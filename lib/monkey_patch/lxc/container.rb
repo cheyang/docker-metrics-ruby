@@ -119,8 +119,11 @@ module LXC
         if @pid.nil?
           @pid = get_external_cmd_process_id
         end
-        
-       @network_interface =`sh -c #{Shell.findveth_cmd} #{@pid}`.to_s
+       
+       cmd = "sh -c #{Shell.findveth_cmd @pid}"
+       
+       puts "cmd=#{cmd}"
+       @network_interface =`#{cmd}`.to_s
      end
      
      puts "network interface is #{@network_interface}"
