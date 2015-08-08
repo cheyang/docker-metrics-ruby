@@ -4,7 +4,7 @@ require "docker/metrics/lxc/container"
 require "monkey_patch/deep_merge"
 require "monkey_patch/shell"
 
-$METRIC_SHELL_DIR=File.expand_path("../../../../scripts", __FILE__)
+$METRIC_SHELL_DIR=File.expand_path("../../../scripts", __FILE__)
 
 module Docker
   module Metrics
