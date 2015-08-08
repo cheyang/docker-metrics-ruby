@@ -25,7 +25,9 @@ Example:
 ``` ruby
 require 'docker/metrics'
 
-container=Docker::Metrics::container('name')
+name = 'container_name'
+
+container=Docker::Metrics::container(name)
 
 report = container.gather_data
 
