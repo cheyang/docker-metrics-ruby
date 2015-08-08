@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.add_dependency "mixlib-log", '>= 0'
   spec.add_dependency 'docker-api', '~> 1.17.0'
-  spec.add_dependency 'lxc-ruby', '>= 0'
+# spec.add_dependency 'lxc-ruby', '>= 0'
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end
