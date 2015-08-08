@@ -127,6 +127,10 @@ module Docker
           return {"memory_usage"=> memory_usage_stats}
         end
         
+        def container_network_metrics(container,require_details)   
+           return {"network_usage"=> container.network_stats}
+        end
+        
         
         def gather_docker_metrics(real_pid, require_details)
           metrics_summary ={"Metrics"=>nil}
