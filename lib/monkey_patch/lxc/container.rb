@@ -120,7 +120,7 @@ module LXC
           @pid = get_external_cmd_process_id
         end
        
-       cmd = "sh -c #{Shell.findveth_cmd @pid}"
+       cmd = "sh -c #{::Shell.findveth_cmd @pid}"
        
        puts "cmd=#{cmd}"
        
