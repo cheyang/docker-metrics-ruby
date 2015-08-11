@@ -139,6 +139,14 @@ module LXC
       "/sys/class/net/#{get_virtual_network_interface()}/statistics"
     end
     
+    def get_diskio_stats
+      
+    end
+    
+    def get_blkio_stat(blkiostatentry)
+       result = run("cgroup", blkiostatentry).to_s.strip.split(" ")[-1].to_i
+    end
+    
     
     private
     
