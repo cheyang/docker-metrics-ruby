@@ -138,6 +138,13 @@ module Docker
            return {"network_usage"=> container.network_stats}
         end
         
+        def container_io_metrics(container,require_details)   
+           return {"diskio_usage"=> {
+                                      "io_service_bytes" => container.get_io_service_bytes,
+                                      "io_serviced" => container.get_io_serviced
+           }}
+        end
+        
         
         def gather_docker_metrics(real_pid, require_details)
           metrics_summary ={"Metrics"=>nil}
@@ -150,6 +157,8 @@ module Docker
           metrics = hash_deep_merge(metrics, container_memory_metrics(lxc_container,require_details))
           
           metrics = hash_deep_merge(metrics, container_network_metrics(lxc_container,require_details))
+          
+           metrics = hash_deep_merge(metrics, container_io_metrics(lxc_container,require_details))
                     
           metrics_summary["Metrics"] = metrics
           
