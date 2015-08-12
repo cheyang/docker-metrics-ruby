@@ -143,8 +143,19 @@ module LXC
       
     end
     
+    def get_io_service_bytes
+      get_blkio_stat("blkio.throttle.io_service")
+    end
+    
+    def get_io_serviced
+      get_blkio_stat("blkio.throttle.io_serviced")
+    end
+    
     def get_blkio_stat(blkiostatentry)
-       result = run("cgroup", blkiostatentry).to_s.strip.split(" ")[-1].to_i
+       input = run("cgroup", blkiostatentry).to_s.strip
+       
+       parse_to_hash(input)
+      
     end
     
     
@@ -161,7 +172,7 @@ module LXC
       
       result.each{|line|
         kv = line.split(" ")
-        key=kv[0]
+        key=kv[-2]
         
         value = kv[-1]
         
