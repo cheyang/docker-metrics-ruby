@@ -174,7 +174,7 @@ module LXC
         kv = line.split(" ")
         key=kv[-2]
         
-        value = kv[-1]
+        value = kv[-1].to_i rescue kv[-1]
         
         hash[key]=value
       }
