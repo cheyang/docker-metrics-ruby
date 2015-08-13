@@ -144,7 +144,7 @@ module LXC
     end
     
     def get_io_service_bytes
-      get_blkio_stat("blkio.throttle.io_service")
+      get_blkio_stat("blkio.throttle.io_service_bytes")
     end
     
     def get_io_serviced
