@@ -158,7 +158,7 @@ module Docker
           
           metrics = hash_deep_merge(metrics, container_network_metrics(lxc_container,require_details))
           
-           metrics = hash_deep_merge(metrics, container_io_metrics(lxc_container,require_details))
+          metrics = hash_deep_merge(metrics, container_io_metrics(lxc_container,require_details))
                     
           metrics_summary["Metrics"] = metrics
           
