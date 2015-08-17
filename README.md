@@ -1,6 +1,6 @@
 # Docker-Metrics
 
-Ruby wrapper for docker metrics tools(support both LXC driver and native driver TODO)
+Ruby wrapper for docker metrics tools(support both LXC driver)
 
 ## Installation
 
